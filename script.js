@@ -93,3 +93,103 @@ if (menuToggle && navMenu) {
         });
     });
 }
+
+// ACCIÓN DEL BOTÓN "INGRESAR A LA EXPERIENCIA"
+const btnEnter = document.getElementById('btn-enter');
+
+if (btnEnter) {
+    btnEnter.addEventListener('click', () => {
+        // Busca la sección de historia y se desplaza suavemente hacia ella
+        document.querySelector('#historia').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    });
+}
+
+
+// 1. Lógica del Preloader
+window.addEventListener('load', () => {
+    const loader = document.getElementById('preloader');
+    const progress = document.getElementById('progress');
+    const perc = document.getElementById('perc');
+    let width = 0;
+    const interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 1000);
+        } else {
+            width++;
+            progress.style.width = width + '%';
+            perc.innerText = width + '%';
+        }
+    }, 30);
+});
+
+// 2. Lógica de animación de la sección contacto
+document.addEventListener('DOMContentLoaded', () => {
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+        contactSection.style.opacity = 0;
+        contactSection.style.transform = 'translateY(50px)';
+        contactSection.style.transition = 'all 1s ease-out';
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        observer.observe(contactSection);
+    }
+});
+
+const audio = document.getElementById('bg-music');
+
+// Función que intenta reproducir
+function playAudio() {
+    audio.play().then(() => {
+        console.log("Música iniciada correctamente.");
+    }).catch(error => {
+        console.log("Bloqueado por el navegador, esperando interacción.");
+    });
+}
+
+// Escuchar cambios de pestaña
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        audio.pause();
+    } else {
+        playAudio();
+    }
+});
+
+// ACTIVACIÓN MÁGICA: Escucha el primer clic en la página
+document.addEventListener('click', () => {
+    playAudio();
+}, { once: true });
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const startBtn = document.getElementById('btn-start-music');
+    const audio = document.getElementById('bg-music');
+
+    startBtn.addEventListener('click', () => {
+        // 1. Reproducir música
+        audio.play().catch(e => console.log("Error al reproducir:", e));
+        
+        // 2. Ocultar la capa de bienvenida
+        welcomeOverlay.style.transition = "opacity 1s ease";
+        welcomeOverlay.style.opacity = "0";
+        
+        // 3. Eliminarla del DOM después de la animación
+        setTimeout(() => {
+            welcomeOverlay.style.display = "none";
+        }, 1000);
+    });
+});

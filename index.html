@@ -13,6 +13,26 @@
 </head>
 <body>
 
+    <div id="welcome-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #080808; z-index: 999999; display: flex; justify-content: center; align-items: center;">
+    <button id="btn-start-music" style="padding: 20px 40px; background: transparent; border: 1px solid #D4AF37; color: #D4AF37; font-size: 1.5rem; cursor: pointer; text-transform: uppercase; letter-spacing: 3px;">
+        Iniciar Experiencia
+    </button>
+</div>
+
+<audio id="bg-music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+    <div id="preloader">
+    <div class="loader-content">
+        <div class="loader-logo elite-shine">ARCARIUS</div>
+        <div class="loader-bar">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        <div class="percentage" id="perc">0%</div>
+    </div>
+</div>
+
     <div class="atmosphere-overlay"></div>
 
    <nav class="navbar">
@@ -27,7 +47,8 @@
     <div class="nav-links" id="nav-menu">
         <a href="#historia">La Mitología</a>
         <a href="#lineup">Artistas</a>
-        <a href="#entradas">Accesos</a>
+        <a href="#entradas">Entradas</a>
+        <a href="#contacto">Contacto</a>
     </div>
 </nav>
 
@@ -85,55 +106,58 @@
         </div>
     </section>
 
-    <section id="lineup" class="lineup-section">
-        <div class="lineup-container">
-            <span class="lineup-tag">El Sonido de la Manada</span>
-            <h2 class="lineup-title">Artistas <span class="gold-text-static">Confirmados</span></h2>
-            <div class="divider-gold"></div>
+   <section id="lineup" class="lineup-section">
+    <div class="lineup-container">
+        <span class="lineup-tag">El Sonido de la Manada</span>
+        <h2 class="lineup-title">Artistas <span class="gold-text-static">Confirmados</span></h2>
+        <div class="divider-gold"></div>
 
-            <div class="lineup-grid">
-                
-                <div class="artist-card headliner">
-                    <div class="artist-img-placeholder">
-                        <span class="mystic-symbol">✦</span>
-                    </div>
-                    <div class="artist-info">
-                        <span class="artist-rank">DJS INTERNACIONALES</span>
-                        <h3>MELODIC TECHNO</h3>
-                        <p>Set Especial de Apertura de Portal</p>
-                    </div>
+        <div class="lineup-grid">
+            
+            <!-- Artista 1 -->
+            <div class="artist-card headliner">
+                <div class="artist-img-placeholder">
+                    <img src="artista1.jpg" alt="Melodic Techno" class="artist-photo">
                 </div>
-
-                <div class="artist-card">
-                    <div class="artist-img-placeholder">
-                        <span class="mystic-symbol">✦</span>
-                    </div>
-                    <div class="artist-info">
-                        <span class="artist-rank">INVITADO ESPECIAL</span>
-                        <h3>GUARACHA PREMIUM</h3>
-                        <p>Ritmos Ancestrales y Tambores</p>
-                    </div>
+                <div class="artist-info">
+                    <span class="artist-rank">DJS INTERNACIONALES</span>
+                    <h3>MELODIC TECHNO</h3>
+                    <p>Set Especial de Apertura de Portal</p>
                 </div>
-
-                <div class="artist-card">
-                    <div class="artist-img-placeholder">
-                        <span class="mystic-symbol">✦</span>
-                    </div>
-                    <div class="artist-info">
-                        <span class="artist-rank">TALENTO LOCAL</span>
-                        <h3>AFROBEATS & URBAN</h3>
-                        <p>Conexión y Frecuencias Costeras</p>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- Artista 2 -->
+            <div class="artist-card">
+                <div class="artist-img-placeholder">
+                    <img src="artista2.jpg" alt="Guaracha Premium" class="artist-photo">
+                </div>
+                <div class="artist-info">
+                    <span class="artist-rank">INVITADO ESPECIAL</span>
+                    <h3>GUARACHA PREMIUM</h3>
+                    <p>Ritmos Ancestrales y Tambores</p>
+                </div>
+            </div>
+
+            <!-- Artista 3 -->
+            <div class="artist-card">
+                <div class="artist-img-placeholder">
+                    <img src="artista3.jpg" alt="Afrobeats & Urban" class="artist-photo">
+                </div>
+                <div class="artist-info">
+                    <span class="artist-rank">TALENTO LOCAL</span>
+                    <h3>AFROBEATS & URBAN</h3>
+                    <p>Conexión y Frecuencias Costeras</p>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="entradas" class="tickets-section">
         <div class="tickets-container">
-            <span class="tickets-tag">Pase Exclusivo</span>
-            <h2 class="tickets-title">Asegura tu <span class="gold-text-static">Acceso</span></h2>
+            <span class="tickets-tag">Pase de Entradas</span>
+            <h2 class="tickets-title">Asegura tus <span class="gold-text-static">Entradas</span></h2>
             <div class="divider-gold"></div>
             <p class="tickets-description">Los cupos para la cabaña son estrictamente limitados para mantener la exclusividad de la experiencia. No te quedes fuera.</p>
 
@@ -159,6 +183,20 @@
             </div>
         </div>
     </section>
+
+    <section id="contacto" class="contact-section">
+    <div class="glass-container">
+        <h2 class="section-title">El Oráculo Espera</h2>
+        <p class="section-subtitle">¿Tienes dudas sobre tu destino en la manada?</p>
+        
+        <form class="contact-form" id="contactForm">
+            <input type="text" placeholder="Tu Nombre" required>
+            <input type="email" placeholder="Tu Correo" required>
+            <textarea placeholder="Tu mensaje para la manada..." rows="4" required></textarea>
+            <button type="submit" class="gold-button-epic">Enviar Mensaje</button>
+        </form>
+    </div>
+</section>
 
     <footer class="footer-section">
         <div class="footer-container">
@@ -207,5 +245,8 @@
 
 
     <script src="script.js"></script>
+
+   
+
 </body>
 </html>
